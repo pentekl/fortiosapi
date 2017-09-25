@@ -84,11 +84,11 @@ class FortiOSAPI(object):
         # 1 per vdom we check only the first one here (might need a more
         # complex check)
         if vdom == "global":
-            resp = json.loads(res.content.decode('utf-8'))[0]
+            resp = json.loads(res.text)[0]
             resp['vdom'] = "global"
         else:
             LOG.debug("content res: %s", res.content)
-            resp = json.loads(res.content.decode('utf-8'))
+            resp = json.loads(res.text)
         return resp
 
     def https(self, status):
